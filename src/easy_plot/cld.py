@@ -1,12 +1,11 @@
-import argparse
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 import io
-from statsmodels.sandbox.stats.multicomp import TukeyHSDResults
-import networkx as nx
+
+import networkx as nx  # type: ignore
+import pandas as pd  # type: ignore
+from statsmodels.sandbox.stats.multicomp import TukeyHSDResults  # type: ignore
 
 # https://qiita.com/TomosurebaOrange/items/c28fc9cae922f3c21e08
+
 
 def adjgraph_from_tukey(result: TukeyHSDResults) -> nx.Graph:
     df = pd.read_csv(io.StringIO(result.as_csv()), skiprows=1, skipinitialspace=True)
@@ -23,18 +22,20 @@ def adjgraph_from_tukey(result: TukeyHSDResults) -> nx.Graph:
 
     return g
 
+
 def get_cld_from_graph(g: nx.Graph) -> dict[str, str]:
     cliques = nx.find_cliques(g)
 
-    labels = list(g.nodes())
+    labels: list[str] = list(g.nodes())
     # 各クリーク集合の要素について，同一の文字列ラベルを与える
-    cld_dict = {label: [] for label in labels}
+    _cld_dict: dict[str, list[str]] = {label: [] for label in labels}
     for i, clique in enumerate(cliques):
         letter = chr(i + 97)
         for j in clique:
-            cld_dict[j].append(letter)
+            _cld_dict[j].append(letter)
 
-    for i in cld_dict:
-        cld_dict[i] = ''.join(cld_dict[i])
+    cld_dict: dict[str, str] = {}
+    for label in _cld_dict.keys():
+        cld_dict[label] = "".join(_cld_dict[label])
 
     return cld_dict

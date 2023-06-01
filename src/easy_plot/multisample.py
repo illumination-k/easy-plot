@@ -1,11 +1,22 @@
 from typing import Optional
+
 import pandas as pd
-import seaborn as sns
-from statsmodels.stats.multicomp import pairwise_tukeyhsd
-from matplotlib.axes import Axes
+import seaborn as sns  # type: ignore
+from matplotlib.axes import Axes  # type: ignore
+from statsmodels.stats.multicomp import pairwise_tukeyhsd  # type: ignore
+
 from easy_plot.cld import adjgraph_from_tukey, get_cld_from_graph
 
-def box_swarm_plot(df: pd.DataFrame, ax: Axes, x = "group", y = "value",  xlabel: Optional[str] = None, ylabel: Optional[str] = None, run_tukey = True):
+
+def box_swarm_plot(
+    df: pd.DataFrame,
+    ax: Axes,
+    x: str = "group",
+    y: str = "value",
+    xlabel: Optional[str] = None,
+    ylabel: Optional[str] = None,
+    run_tukey=True,
+):
     sns.swarmplot(x=x, y=y, data=df, alpha=0.7, ax=ax)
     sns.boxplot(x=x, y=y, data=df, ax=ax, boxprops=dict(alpha=0.3))
 
@@ -21,6 +32,13 @@ def box_swarm_plot(df: pd.DataFrame, ax: Axes, x = "group", y = "value",  xlabel
 
         for i, group in enumerate(df[x].unique()):
             y_value = df[df[x] == group][y].quantile(0.9) + 0.1
-            ax.text(x=i, y=y_value, s=cld_dict[group], ha='center', fontsize=20, fontweight='bold')
+            ax.text(
+                x=i,
+                y=y_value,
+                s=cld_dict[group],
+                ha="center",
+                fontsize=20,
+                fontweight="bold",
+            )
 
     return ax
