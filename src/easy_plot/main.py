@@ -1,7 +1,7 @@
 import argparse
 
-import easy_plot.default_config as _
 from easy_plot import handlers
+from easy_plot.config import Config
 
 
 def attach_plot_argument(parser: argparse.ArgumentParser):
@@ -20,6 +20,7 @@ def attach_plot_argument(parser: argparse.ArgumentParser):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("-c", "--config", default=None, type=str)
 
     subparsers = parser.add_subparsers()
     multisample_parser = subparsers.add_parser("multisample")
@@ -62,6 +63,7 @@ def main():
     args = parser.parse_args()
 
     if hasattr(args, "handler"):
+        Config.apply_from_path(args.config)
         args.handler(args)
     else:
         parser.print_help()

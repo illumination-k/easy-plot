@@ -10,6 +10,8 @@ pip install git+https://github.com/illumination-k/easy-plot.git
 
 ## Multiplot
 
+Plot boxplot and swarmplot with tukey-hsd test.
+
 ```bash
 easy-plot multisample -i ./examples/multisample.csv -o ./examples/multisample.png
 ```
@@ -23,6 +25,8 @@ easy-plot multisample -i ./examples/multisample.csv -o ./examples/multisample.pn
 ![multisample](examples/multisample.png)
 
 ## Two sample plot
+
+Plot boxplot and swarmplot with t-test_welch test.
 
 ```bash
 easyplot twosample -i ./examples/twosample.csv -o ./examples/twosample.png --test t-test_welch --test-text simple
