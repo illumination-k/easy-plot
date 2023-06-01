@@ -1,6 +1,6 @@
 # easy-plot
 
-The CLI tool to write plot easily
+The CLI tool to plot biological data easily
 
 ## Installation
 
@@ -8,7 +8,7 @@ The CLI tool to write plot easily
 pip install git+https://github.com/illumination-k/easy-plot.git
 ```
 
-## Multiplot
+## Multisample plot
 
 Plot boxplot and swarmplot with tukey-hsd test.
 

@@ -14,6 +14,7 @@ def attach_plot_argument(parser: argparse.ArgumentParser):
     parser.add_argument(
         "--ylabel", type=str, default=None, help="ylabel of figure. default is value"
     )
+    parser.add_argument("--colors", nargs="*", default=None, help="specify a color of each group")
 
     return parser
 

@@ -20,7 +20,12 @@ def plot_multisample(args: Namespace):
     fig = plt.figure(figsize=get_figsize(args.figsize))
     ax = fig.add_subplot(111)
     multisample.box_swarm_plot(
-        df, ax, xlabel=args.xlabel, ylabel=args.ylabel, run_tukey=args.run_tukey
+        df,
+        ax,
+        xlabel=args.xlabel,
+        ylabel=args.ylabel,
+        run_tukey=args.run_tukey,
+        colors=args.colors,
     )
 
     plt.savefig(args.output)
@@ -32,7 +37,13 @@ def plot_twosample(args: Namespace):
     fig = plt.figure(figsize=get_figsize(args.figsize))
     ax = fig.add_subplot(111)
     twosample.box_swarm_plot(
-        df, ax, xlabel=args.xlabel, ylabel=args.ylabel, test=args.test, text_format=args.text_format
+        df,
+        ax,
+        xlabel=args.xlabel,
+        ylabel=args.ylabel,
+        test=args.test,
+        text_format=args.text_format,
+        colors=args.colors,
     )
 
     plt.savefig(args.output)
