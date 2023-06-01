@@ -31,12 +31,14 @@ managed = true
 dev-dependencies = ["black~=23.3.0", "isort~=5.12.0", "mypy~=1.3.0", "pandas-stubs~=2.0.1.230501"]
 
 [tool.rye.scripts]
-fmt = { chain = ["fmt:black", "fmt:isort"]}
+fmt = { chain = ["fmt:black", "fmt:isort", "fmt:dprint"] }
 "fmt:black" = "black ."
 "fmt:isort" = "isort ."
-lint = { chain = ["lint:black", "lint:mypy"] }
+"fmt:dprint" = "dprint fmt"
+lint = { chain = ["lint:black", "lint:mypy", "lint:dprint"] }
 "lint:mypy" = "mypy ."
 "lint:black" = "black --check ."
+"lint:dprint" = "dprint check"
 
 [tool.hatch.metadata]
 allow-direct-references = true

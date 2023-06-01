@@ -1,9 +1,56 @@
+import argparse
+
 import easy_plot.default_config as _
-from easy_plot.multisample import box_swarm_plot
+from easy_plot import handlers
 
 
 def main():
-    print("hello")
+    parser = argparse.ArgumentParser()
+
+    subparsers = parser.add_subparsers()
+    multisample_parser = subparsers.add_parser("multisample")
+    multisample_parser.add_argument(
+        "-i",
+        "--input",
+        required=True,
+        type=str,
+        help="input csv file. First row should be group label and second row should be value",
+    )
+    multisample_parser.add_argument(
+        "-o", "--output", required=True, type=str, help="Ouput image path"
+    )
+    multisample_parser.add_argument("--xlabel", type=str, default=None)
+    multisample_parser.add_argument("--ylabel", type=str, default=None)
+    multisample_parser.add_argument(
+        "--run-tukey", action="store_false", help="Run pairwise_tukey or not"
+    )
+
+    multisample_parser.set_defaults(handler=handlers.plot_multisample)
+
+    twosample_parser = subparsers.add_parser("twosample")
+    twosample_parser.add_argument(
+        "-i",
+        "--input",
+        required=True,
+        type=str,
+        help="input csv file. First row should be group label and second row should be value. These is just two group labels!",
+    )
+    twosample_parser.add_argument(
+        "-o", "--output", required=True, type=str, help="Ouput image path"
+    )
+    twosample_parser.add_argument("--test", choices=["t-test_welch"], default="t-test_welch")
+    twosample_parser.add_argument("--text-format", choices=["simple", "star"], default="simple")
+    twosample_parser.add_argument("--xlabel", type=str, default=None)
+    twosample_parser.add_argument("--ylabel", type=str, default=None)
+
+    twosample_parser.set_defaults(handler=handlers.plot_twosample)
+
+    args = parser.parse_args()
+
+    if hasattr(args, "handler"):
+        args.handler(args)
+    else:
+        parser.print_help()
 
 
 if __name__ == "__main__":

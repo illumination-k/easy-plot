@@ -8,7 +8,7 @@ from statsmodels.sandbox.stats.multicomp import TukeyHSDResults  # type: ignore
 
 
 def adjgraph_from_tukey(result: TukeyHSDResults) -> nx.Graph:
-    df = pd.read_csv(io.StringIO(result.as_csv()), skiprows=1, skipinitialspace=True)
+    df = pd.read_csv(io.StringIO(result.summary().as_csv()), skiprows=1, skipinitialspace=True)
     df.columns = df.columns.str.strip()
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 

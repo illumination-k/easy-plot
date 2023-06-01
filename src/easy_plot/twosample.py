@@ -16,6 +16,8 @@ def box_swarm_plot(
     test: Optional[Literal["t-test_welch"]] = "t-test_welch",
     text_format: Literal["simple", "star"] = "simple",
 ):
+    assert len(df[x].unique()) == 2
+
     sns.swarmplot(x=x, y=y, data=df, alpha=0.7, ax=ax)
     sns.boxplot(x=x, y=y, data=df, ax=ax, boxprops=dict(alpha=0.3))
 
