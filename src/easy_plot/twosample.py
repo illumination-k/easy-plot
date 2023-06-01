@@ -28,7 +28,6 @@ def box_swarm_plot(
         ax.set_ylabel(ylabel)
 
     if test is not None:
-        
         pairs = [(groups[0], groups[1])]
         annotator = Annotator(ax, pairs, data=df, x=x, y=y)
         annotator.configure(test="t-test_welch", text_format=text_format)

@@ -4,6 +4,20 @@ import easy_plot.default_config as _
 from easy_plot import handlers
 
 
+def attach_plot_argument(parser: argparse.ArgumentParser):
+    parser.add_argument(
+        "--figsize", type=str, default=None, help="Figsize of plot. write tuple value like (10, 10)"
+    )
+    parser.add_argument(
+        "--xlabel", type=str, default=None, help="xlabel of figure. default is group"
+    )
+    parser.add_argument(
+        "--ylabel", type=str, default=None, help="ylabel of figure. default is value"
+    )
+
+    return parser
+
+
 def main():
     parser = argparse.ArgumentParser()
 
@@ -19,11 +33,11 @@ def main():
     multisample_parser.add_argument(
         "-o", "--output", required=True, type=str, help="Ouput image path"
     )
-    multisample_parser.add_argument("--xlabel", type=str, default=None)
-    multisample_parser.add_argument("--ylabel", type=str, default=None)
     multisample_parser.add_argument(
         "--run-tukey", action="store_false", help="Run pairwise_tukey or not"
     )
+
+    multisample_parser = attach_plot_argument(multisample_parser)
 
     multisample_parser.set_defaults(handler=handlers.plot_multisample)
 
@@ -40,8 +54,8 @@ def main():
     )
     twosample_parser.add_argument("--test", choices=["t-test_welch"], default="t-test_welch")
     twosample_parser.add_argument("--text-format", choices=["simple", "star"], default="simple")
-    twosample_parser.add_argument("--xlabel", type=str, default=None)
-    twosample_parser.add_argument("--ylabel", type=str, default=None)
+
+    twosample_parser = attach_plot_argument(twosample_parser)
 
     twosample_parser.set_defaults(handler=handlers.plot_twosample)
 
