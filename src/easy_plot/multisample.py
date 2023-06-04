@@ -16,6 +16,8 @@ def box_swarm_plot(
     ax: Axes,
     x: str = "group",
     y: str = "value",
+    vmin: Optional[float] = None,
+    vmax: Optional[float] = None,
     colors: Optional[list[str]] = None,
     color_palette: Optional[str] = None,
     xlabel: Optional[str] = None,
@@ -40,6 +42,8 @@ def box_swarm_plot(
         ax.set_xlabel(xlabel)
     if ylabel is not None:
         ax.set_ylabel(ylabel)
+
+    ax.set_ylim(ymin=vmin, ymax=vmax)
 
     if run_tukey:
         result = pairwise_tukeyhsd(endog=df[y], groups=df[x])

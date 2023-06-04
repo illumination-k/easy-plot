@@ -14,6 +14,8 @@ def box_swarm_plot(
     ax: Axes,
     x: str = "group",
     y: str = "value",
+    vmin: Optional[float] = None,
+    vmax: Optional[float] = None,
     colors: Optional[list[str]] = None,
     color_palette: Optional[str] = None,
     xlabel: Optional[str] = None,
@@ -37,6 +39,8 @@ def box_swarm_plot(
 
     sns.swarmplot(x=x, y=y, data=df, alpha=0.7, ax=ax, palette=palette)
     sns.boxplot(x=x, y=y, data=df, ax=ax, boxprops=dict(alpha=0.3), palette=palette)
+
+    ax.set_ylim(ymin=vmin, ymax=vmax)
 
     if xlabel is not None:
         ax.set_xlabel(xlabel)

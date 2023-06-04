@@ -24,6 +24,8 @@ def plot_multisample(args: Namespace):
         ax,
         xlabel=args.xlabel,
         ylabel=args.ylabel,
+        vmax=args.vmax,
+        vmin=args.vmin,
         run_tukey=args.run_tukey,
         colors=args.colors,
     )
@@ -41,6 +43,8 @@ def plot_twosample(args: Namespace):
         ax,
         xlabel=args.xlabel,
         ylabel=args.ylabel,
+        vmax=args.vmax,
+        vmin=args.vmin,
         test=args.test,
         text_format=args.text_format,
         colors=args.colors,
