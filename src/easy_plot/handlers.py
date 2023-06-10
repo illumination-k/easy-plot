@@ -38,7 +38,9 @@ def plot_multisample(args: Namespace):
         colors=args.colors,
     )
 
-    plt.tight_layout()
+    if args.tight_layout:
+        plt.tight_layout()
+
     plt.savefig(args.output)
 
 
@@ -47,6 +49,7 @@ def plot_twosample(args: Namespace):
     df.columns = pd.Index(["group", "value"])
     fig = plt.figure(figsize=get_figsize(args.figsize))
     ax = fig.add_subplot(111)
+
     twosample.box_swarm_plot(
         df,
         ax,
@@ -59,4 +62,6 @@ def plot_twosample(args: Namespace):
         colors=args.colors,
     )
 
+    if args.tight_layout:
+        plt.tight_layout()
     plt.savefig(args.output)

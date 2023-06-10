@@ -1,7 +1,12 @@
 import argparse
 
+import matplotlib as mpl  # type: ignore
+
 from easy_plot import handlers
 from easy_plot.config import Config
+
+mpl.rcParams["pdf.fonttype"] = 42
+mpl.rcParams["ps.fonttype"] = 42
 
 
 def attach_plot_argument(parser: argparse.ArgumentParser):
@@ -20,7 +25,7 @@ def attach_plot_argument(parser: argparse.ArgumentParser):
     parser.add_argument("--xlabel-rotation", type=float, default=None)
 
     parser.add_argument("--colors", nargs="*", default=None, help="specify a color of each group")
-
+    parser.add_argument("--tight-layout", action="store_true", help="Run tight_layout or not")
     return parser
 
 

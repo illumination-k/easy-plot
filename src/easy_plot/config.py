@@ -13,7 +13,6 @@ class Config(BaseModel):
     axes_line_width: float = 1.0
 
     def apply_config(self):
-        import matplotlib as mpl  # type: ignore
         import matplotlib.font_manager as font_manager  # type: ignore
         import matplotlib.pyplot as plt  # type: ignore
 
@@ -26,13 +25,10 @@ class Config(BaseModel):
         if self.font_family is not None:
             plt.rcParams["font.family"] = self.font_family
 
-        mpl.rcParams["pdf.fonttype"] = 42
-        mpl.rcParams["ps.fonttype"] = 42
-
         plt.rcParams["font.size"] = self.font_size
-        plt.rcParams["xtick.direction"] = "in"  # x axis in
-        plt.rcParams["ytick.direction"] = "in"  # y axis in
-        plt.rcParams["axes.linewidth"] = 1.0  # axis line width
+        plt.rcParams["xtick.direction"] = self.xtick_direction  # x axis in
+        plt.rcParams["ytick.direction"] = self.ytick_direction  # y axis in
+        plt.rcParams["axes.linewidth"] = self.axes_line_width  # axis line width
 
     @staticmethod
     def apply_from_path(path: Optional[str]):

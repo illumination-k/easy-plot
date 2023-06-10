@@ -29,7 +29,7 @@ def get_cld_from_graph(g: nx.Graph) -> dict[str, str]:
     labels: list[str] = list(g.nodes())
     # 各クリーク集合の要素について，同一の文字列ラベルを与える
     _cld_dict: dict[str, list[str]] = {label: [] for label in labels}
-    print(cliques)
+
     for i, clique in enumerate(cliques):
         letter = chr(i + 97)
         for j in clique:
