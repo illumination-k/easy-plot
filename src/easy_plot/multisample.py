@@ -1,11 +1,11 @@
 from logging import getLogger
 from typing import Optional, Union
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 import seaborn as sns  # type: ignore
 from matplotlib.axes import Axes  # type: ignore
-from matplotlib.patches import Rectangle, PathPatch  # type: ignore
+from matplotlib.patches import PathPatch, Rectangle  # type: ignore
 from statsmodels.stats.multicomp import pairwise_tukeyhsd  # type: ignore
 
 from easy_plot.cld import adjgraph_from_tukey, get_cld_from_graph
@@ -38,7 +38,7 @@ def box_swarm_plot(
         palette = color_palette
     else:
         pass
-    
+
     legend = None
     if hue is not None:
         legend = False
@@ -52,7 +52,7 @@ def box_swarm_plot(
         ax.set_ylabel(ylabel)
 
     ax.set_ylim(ymin=vmin, ymax=vmax)
-    
+
     if xlabel_rotation is not None:
         ax.tick_params(axis="x", rotation=xlabel_rotation)
 

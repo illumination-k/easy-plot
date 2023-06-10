@@ -6,6 +6,7 @@ import pandas as pd
 
 from easy_plot import multisample, twosample
 
+
 def get_figsize(s: Optional[str]):
     if s is None:
         return None
@@ -15,7 +16,7 @@ def get_figsize(s: Optional[str]):
 
 def plot_multisample(args: Namespace):
     df = pd.read_csv(args.input, header=None)
-    
+
     hue = None
     if len(df.columns) == 2:
         df.columns = pd.Index(["group", "value"])
