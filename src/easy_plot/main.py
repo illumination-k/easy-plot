@@ -17,6 +17,8 @@ def attach_plot_argument(parser: argparse.ArgumentParser):
     parser.add_argument("--vmin", type=float, default=None)
     parser.add_argument("--vmax", type=float, default=None)
 
+    parser.add_argument("--xlabel-rotation", type=float, default=None)
+    
     parser.add_argument("--colors", nargs="*", default=None, help="specify a color of each group")
 
     return parser

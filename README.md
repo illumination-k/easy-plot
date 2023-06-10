@@ -10,19 +10,35 @@ pip install git+https://github.com/illumination-k/easy-plot.git
 
 ## Multisample plot
 
+### Simple Multisample Plot
+
 Plot boxplot and swarmplot with tukey-hsd test.
 
 ```bash
 easy-plot multisample -i ./examples/multisample.csv -o ./examples/multisample.png
 ```
 
-### Example data
+#### Example data
 
 [multisample.csv](examples/multisample.csv)
 
-### Example image
+#### Example image
 
 ![multisample](examples/multisample.png)
+
+### With hue
+
+```bash
+easy-plot multisample -i ./examples/multisample_hue.csv -o ./examples/multisample_hue.png --xlabel-rotation 75 --ylabel 'size' --xlabel ""
+```
+
+#### Example data
+
+[multisample_hue.csv](examples/multisample_hue.csv)
+
+#### Example image
+
+![multisample_hue](examples/multisample_hue.png)
 
 ## Two sample plot
 
