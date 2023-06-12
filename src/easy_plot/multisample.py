@@ -41,7 +41,9 @@ def box_swarm_plot(
 
     sns.swarmplot(x=x, y=y, hue=hue, dodge=True, data=df, alpha=0.7, ax=ax, palette=palette)
     sns.boxplot(x=x, y=y, hue=hue, data=df, ax=ax, boxprops=dict(alpha=0.3), palette=palette)
-    ax.get_legend().remove()
+    
+    if hue is not None:
+        ax.get_legend().remove()
     if xlabel is not None:
         ax.set_xlabel(xlabel)
     if ylabel is not None:
